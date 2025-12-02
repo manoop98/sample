@@ -1,0 +1,234 @@
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Linkedin, Github, Globe, Briefcase, GraduationCap, Award, Code } from 'lucide-react';
+
+export default function DigitalResume() {
+  const [activeSection, setActiveSection] = useState('experience');
+
+  const resumeData = {
+    name: "MANOOP M",
+    title: "DevOps Engineer",
+    contact: {
+      email: "manooppta@gmail.com",
+      phone: "+91 (555) 123-4567",
+      location: "Kollam, Kerala, IN",
+      linkedin: "linkedin.com/in/manoop-madhu-45b155212",
+      github: "github.com/yourusername",
+      website: "yourwebsite.com"
+    },
+    summary: "Results-driven DevOps Engineer with more than three years of professional experience in architecting, automating, and optimizing deployment processes across diverse infrastructures. Proficient in Linux, AWS, GCP, Azure Cloud, Docker, Kubernetes, and committed to developing efficient CI/CD pipelines. Proven ability to enhance system reliability, scalability, and performance through a strong focus on DevOps methodologies.",
+    experience: [
+      {
+        title: "Cloud Support Engineer",
+        company: "Network Redux India",
+        period: "Nov 2021 - Present",
+        description: "Providing comprehensive cloud infrastructure support and solutions across AWS, Azure, and GCP platforms.",
+        achievements: [
+          "Managing and troubleshooting cloud infrastructure for multiple clients",
+          "Implementing automated deployment solutions using Terraform and CI/CD pipelines",
+          "Providing 24/7 technical support for cloud-based applications and services",
+          "Optimizing cloud resource utilization resulting in 30% cost reduction for clients",
+          "Resolving critical incidents and performing root cause analysis"
+        ]
+      },
+      {
+        title: "Software Engineer",
+        company: "Poornam Info Vision Private Limited",
+        period: "Nov 2021 - Nov 2024",
+        description: "Architected and maintained cloud infrastructure with focus on automation and high availability.",
+        achievements: [
+          "Successfully implemented WordPress website with high availability on AWS Cloud infrastructure",
+          "Achieved 70% reduction in manual setup time by implementing Ansible playbooks for automated server configuration",
+          "Enhanced system reliability by introducing Nagios for active monitoring, resulting in 50% decrease in critical system outages",
+          "Created Bash scripts for log rotation, optimizing disk space management and application performance",
+          "Proficient in troubleshooting Linux servers with primary focus on cPanel and Plesk environments"
+        ]
+      },
+      {
+        title: "Server Engineer Intern",
+        company: "Clado Solutions",
+        period: "Jun 2021 - Nov 2021",
+        description: "Gained hands-on experience in server administration and infrastructure management.",
+        achievements: [
+          "Configured and administered Apache, SSH, and MySQL services",
+          "Implemented SSL certificate setup for secure communications",
+          "Created and managed system backups for data preservation and recovery",
+          "Provided technical support for account management and troubleshooting"
+        ]
+      }
+    ],
+    education: [
+      {
+        degree: "Bachelor of Technology in Computer Science",
+        school: "North East Frontier Technical University",
+        period: "2017 - 2021",
+        gpa: ""
+      }
+    ],
+    skills: {
+      "Cloud Platforms": ["AWS", "GCP (Basics)", "Azure Cloud (Basics)"],
+      "CI/CD & Automation": ["GitHub Actions", "AWS CodePipeline", "Terraform", "Ansible"],
+      "Containerization": ["Docker", "Kubernetes"],
+      "Scripting & Programming": ["Bash", "Python (Basics)", "PHP"],
+      "Operating Systems": ["Linux", "Ubuntu", "Windows", "Mac OS"],
+      "Version Control": ["Git", "GitHub", "BitBucket"],
+      "Web Servers": ["Nginx", "Apache", "Tomcat", "IIS"],
+      "Databases": ["MySQL", "MariaDB", "Redis"],
+      "Monitoring": ["Nagios"]
+    },
+    certifications: [
+      "Professional Cloud Architect - Google Cloud",
+      "AZ-104: Microsoft Azure Administrator",
+      "AZ-900: Microsoft Azure Fundamentals"
+    ]
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4">
+      <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8">
+          <h1 className="text-4xl font-bold mb-2">{resumeData.name}</h1>
+          <p className="text-xl text-blue-100 mb-6">{resumeData.title}</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              <span>{resumeData.contact.email}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              <span>{resumeData.contact.phone}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              <span>{resumeData.contact.location}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Linkedin className="w-4 h-4" />
+              <span>{resumeData.contact.linkedin}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Github className="w-4 h-4" />
+              <span>{resumeData.contact.github}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Globe className="w-4 h-4" />
+              <span>{resumeData.contact.website}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Summary */}
+        <div className="p-8 border-b">
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">Professional Summary</h2>
+          <p className="text-slate-600 leading-relaxed">{resumeData.summary}</p>
+        </div>
+
+        {/* Navigation Tabs */}
+        <div className="flex border-b bg-slate-50">
+          {['experience', 'education', 'skills', 'certifications'].map((section) => (
+            <button
+              key={section}
+              onClick={() => setActiveSection(section)}
+              className={`flex-1 py-4 px-6 text-sm font-semibold uppercase tracking-wide transition-colors ${
+                activeSection === section
+                  ? 'bg-white text-blue-600 border-b-2 border-blue-600'
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              {section}
+            </button>
+          ))}
+        </div>
+
+        {/* Content Area */}
+        <div className="p-8">
+          {activeSection === 'experience' && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 mb-6">
+                <Briefcase className="w-6 h-6 text-blue-600" />
+                <h2 className="text-2xl font-bold text-slate-800">Work Experience</h2>
+              </div>
+              {resumeData.experience.map((job, index) => (
+                <div key={index} className="border-l-4 border-blue-600 pl-6 pb-6">
+                  <h3 className="text-xl font-semibold text-slate-800">{job.title}</h3>
+                  <p className="text-blue-600 font-medium">{job.company}</p>
+                  <p className="text-sm text-slate-500 mb-3">{job.period}</p>
+                  <p className="text-slate-600 mb-3">{job.description}</p>
+                  <ul className="list-disc list-inside space-y-1 text-slate-600">
+                    {job.achievements.map((achievement, i) => (
+                      <li key={i}>{achievement}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeSection === 'education' && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 mb-6">
+                <GraduationCap className="w-6 h-6 text-blue-600" />
+                <h2 className="text-2xl font-bold text-slate-800">Education</h2>
+              </div>
+              {resumeData.education.map((edu, index) => (
+                <div key={index} className="border-l-4 border-blue-600 pl-6">
+                  <h3 className="text-xl font-semibold text-slate-800">{edu.degree}</h3>
+                  <p className="text-blue-600 font-medium">{edu.school}</p>
+                  <p className="text-sm text-slate-500">{edu.period}</p>
+                  {edu.gpa && <p className="text-slate-600 mt-2">GPA: {edu.gpa}</p>}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeSection === 'skills' && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 mb-6">
+                <Code className="w-6 h-6 text-blue-600" />
+                <h2 className="text-2xl font-bold text-slate-800">Technical Skills</h2>
+              </div>
+              {Object.entries(resumeData.skills).map(([category, skills]) => (
+                <div key={category} className="mb-6">
+                  <h3 className="text-lg font-semibold text-slate-700 mb-3">{category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeSection === 'certifications' && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 mb-6">
+                <Award className="w-6 h-6 text-blue-600" />
+                <h2 className="text-2xl font-bold text-slate-800">Certifications</h2>
+              </div>
+              <div className="space-y-4">
+                {resumeData.certifications.map((cert, index) => (
+                  <div key={index} className="flex items-center gap-3 p-4 bg-slate-50 rounded-lg">
+                    <Award className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <span className="text-slate-700 font-medium">{cert}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="bg-slate-50 p-6 text-center text-sm text-slate-500">
+          <p>Last Updated: December 2025</p>
+        </div>
+      </div>
+    </div>
+  );
+}
